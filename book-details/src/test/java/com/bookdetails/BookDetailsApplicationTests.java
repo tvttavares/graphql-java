@@ -1,13 +1,13 @@
-package com.tvt.graphqljava;
+package com.bookdetails;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class GraphqlJavaApplicationTests {
+class BookDetailsApplicationTests {
 
-	@Test
-	void contextLoads() {
-	}
+    @Test
+    void contextLoads() {
+    }
 
 }
