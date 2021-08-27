@@ -1,0 +1,7 @@
+spring:
+  application:
+    name: graphql-kickstarter
+
+server:
+  http2:
+    enabled: true
