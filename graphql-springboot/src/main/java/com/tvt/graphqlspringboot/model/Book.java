@@ -1,18 +1,29 @@
 package com.tvt.graphqlspringboot.model;
 
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.Id;
-import javax.persistence.ManyToMany;
-import java.util.List;
+import javax.persistence.*;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 public class Book {
-    private String title;
+
     @Id
     private String isbn;
-    @ManyToMany(fetch = FetchType.EAGER)
-    private List<Author> authors;
+
+    private String title;
+
+    @ManyToMany(
+            cascade = {
+                    CascadeType.PERSIST,
+                    CascadeType.MERGE
+            },
+            fetch = FetchType.EAGER)
+    @JoinTable(
+            name = "book_author",
+            joinColumns = @JoinColumn(name = "isbn"),
+            inverseJoinColumns = @JoinColumn(name = "author_id")
+    )
+    private Set<Author> authors;
 
     public Book() {
     }
@@ -38,11 +49,18 @@ public class Book {
         this.isbn = isbn;
     }
 
-    public List<Author> getAuthors() {
+    public Set<Author> getAuthors() {
         return authors;
     }
 
-    public void setAuthors(List<Author> authors) {
+    public void setAuthors(Set<Author> authors) {
         this.authors = authors;
+    }
+
+    public void addAuthor(Author author) {
+        if (this.authors == null) {
+            this.authors = new HashSet<>();
+        }
+        this.authors.add(author);
     }
 }
