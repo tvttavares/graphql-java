@@ -1,3 +1,4 @@
+# Supported currencies
 enum Currency {
     CMF
     USD
