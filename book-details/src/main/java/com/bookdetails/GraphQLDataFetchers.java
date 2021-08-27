@@ -52,6 +52,12 @@ public class GraphQLDataFetchers {
         };
     }
 
+    public DataFetcher getAllBooksDataFetcher() {
+        return dataFetchingEnvironment -> {
+            return books;
+        };
+    }
+
     public DataFetcher getAuthorDataFetcher() {
         return dataFetchingEnvironment -> {
             Map<String, String> book = dataFetchingEnvironment.getSource();
@@ -68,6 +74,23 @@ public class GraphQLDataFetchers {
         return dataFetchingEnvironment -> {
             Map<String, String> book = dataFetchingEnvironment.getSource();
             return book.get("totalPages");
+        };
+    }
+
+    public DataFetcher getAllAuthorsDataFetcher() {
+        return dataFetchingEnvironment -> {
+            return authors;
+        };
+    }
+
+    public DataFetcher getAuthorByIdDataFetcher() {
+        return dataFetchingEnvironment -> {
+            String authorId = dataFetchingEnvironment.getArgument("id");
+            return authors
+                    .stream()
+                    .filter(author -> author.get("id").equals(authorId))
+                    .findFirst()
+                    .orElse(null);
         };
     }
 }
