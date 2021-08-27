@@ -1,12 +1,13 @@
 # GraphQL Book-Details
-Sample graphql project from [Getting started with GraphQL Java and Spring Boot](https://www.graphql-java.com/tutorials/getting-started-with-spring-boot/) 
+Sample graphql project from [Getting started with GraphQL Java and Spring Boot](https://www.graphql-java.com/tutorials/getting-started-with-spring-boot/) with minor improvements. 
 
-## Try it out
+## Deployment
 * http://localhost:8080/graphql
 
 Use [GraphQL Playground](https://github.com/prisma/graphql-playground) or [Postman](https://www.postman.com) for testing
 
-```js
+#### Query samples
+```js 
 {
     bookById(id: "book-1") {
         id
@@ -18,3 +19,14 @@ Use [GraphQL Playground](https://github.com/prisma/graphql-playground) or [Postm
         }
     }
 }
+```
+
+```js 
+{
+    allBooks {
+        id
+        name
+        pageCount
+    }
+}
+```
