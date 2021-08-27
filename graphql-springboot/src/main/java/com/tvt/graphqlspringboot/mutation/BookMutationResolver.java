@@ -27,7 +27,10 @@ public class BookMutationResolver implements GraphQLMutationResolver {
     }
 
     public Book createBook(BookWrapper bookWrapper) {
-        return bookRepository.save(new Book(bookWrapper.getTitle(), bookWrapper.getIsbn()));
+//        return bookRepository.save(new Book(bookWrapper.getTitle(), bookWrapper.getIsbn()));
+        Book book = new Book(bookWrapper.getTitle(), bookWrapper.getIsbn());
+        book.setPublishedDate(bookWrapper.getPublishedDate());
+        return bookRepository.save(book);
     }
 
     public Book addAuthor(Long authorId, String isbn) {

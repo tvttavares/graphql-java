@@ -1,6 +1,7 @@
 package com.tvt.graphqlspringboot.model;
 
 import javax.persistence.*;
+import java.time.LocalDate;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -11,6 +12,7 @@ public class Book {
     private String isbn;
 
     private String title;
+    private LocalDate publishedDate;
 
     @ManyToMany(
             cascade = {
@@ -55,6 +57,14 @@ public class Book {
 
     public void setAuthors(Set<Author> authors) {
         this.authors = authors;
+    }
+
+    public LocalDate getPublishedDate() {
+        return publishedDate;
+    }
+
+    public void setPublishedDate(LocalDate publishedDate) {
+        this.publishedDate = publishedDate;
     }
 
     public void addAuthor(Author author) {
