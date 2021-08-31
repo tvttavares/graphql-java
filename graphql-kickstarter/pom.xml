@@ -44,6 +44,12 @@
             <artifactId>playground-spring-boot-starter</artifactId>
             <version>5.10.0</version>
         </dependency>
+        <dependency>
+            <groupId>com.graphql-java-kickstart</groupId>
+            <artifactId>voyager-spring-boot-starter</artifactId>
+            <version>7.0.1</version>
+            <scope>runtime</scope>
+        </dependency>
     </dependencies>
 
     <build>
