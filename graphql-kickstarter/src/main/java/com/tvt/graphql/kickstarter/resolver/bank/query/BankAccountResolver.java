@@ -1,4 +1,4 @@
-package com.tvt.graphql.kickstarter.resolver;
+package com.tvt.graphql.kickstarter.resolver.bank.query;
 
 import com.coxautodev.graphql.tools.GraphQLQueryResolver;
 import com.tvt.graphql.kickstarter.domain.bank.BankAccount;
@@ -14,6 +14,9 @@ public class BankAccountResolver implements GraphQLQueryResolver {
 
     public BankAccount bankAccount(UUID id) {
         log.info("Retrieving bank account id: {}", id);
-        return BankAccount.builder().id(id).currency(Currency.USD).name("Thiago").build();
+        return BankAccount.builder()
+                .id(id)
+                .currency(Currency.USD)
+                .build();
     }
 }

@@ -1,5 +1,5 @@
 # GraphQL kickstarter example
-Projects created from graphql kickstarter tutorial
+Project created from graphql kickstarter tutorial
 
 * [GraphQL Java Kickstart](https://www.graphql-java-kickstart.com/tutorials/courses/)
 
