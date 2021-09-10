@@ -86,12 +86,6 @@
             <artifactId>assertj-core</artifactId>
             <scope>test</scope>
         </dependency>
-        <dependency>
-            <groupId>com.graphql-java-kickstart</groupId>
-            <artifactId>graphql-java-tools</artifactId>
-            <version>5.7.1</version>
-            <scope>compile</scope>
-        </dependency>
     </dependencies>
 
     <build>

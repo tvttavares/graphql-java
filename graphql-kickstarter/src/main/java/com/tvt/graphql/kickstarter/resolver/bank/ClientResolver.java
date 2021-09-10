@@ -1,9 +1,8 @@
 package com.tvt.graphql.kickstarter.resolver.bank;
 
-
-import com.coxautodev.graphql.tools.GraphQLResolver;
 import com.tvt.graphql.kickstarter.domain.bank.BankAccount;
 import com.tvt.graphql.kickstarter.domain.bank.Client;
+import graphql.kickstart.tools.GraphQLResolver;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
 
