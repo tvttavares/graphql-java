@@ -1,6 +1,9 @@
 spring:
   application:
     name: graphql-kickstarter
+  servlet:
+    multipart:
+      max-file-size: 2MB
 
 server:
   http2:
