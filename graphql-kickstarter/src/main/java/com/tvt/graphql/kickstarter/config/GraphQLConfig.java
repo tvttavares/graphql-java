@@ -1,2 +1,14 @@
-package com.tvt.graphql.kickstarter.config;public class GraphQLConfig {
+package com.tvt.graphql.kickstarter.config;
+
+public class GraphQLConfig {
+
+//  InstrumentationService(ContextFactory contextFactory) {
+//    this.contextFactory = contextFactory;
+//  }
+//
+//  @Bean
+//  public List<Instrumentation> instrumentations(Clock clock) {
+//    return new ArrayList<>(List.of(new RequestLoggingInstrumentation(clock)));
+//  }
+
 }

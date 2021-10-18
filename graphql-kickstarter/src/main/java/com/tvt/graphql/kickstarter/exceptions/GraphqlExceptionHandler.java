@@ -7,7 +7,6 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 
 import javax.validation.ConstraintViolationException;
 
-
 @Component
 public class GraphqlExceptionHandler {
 
@@ -20,4 +19,5 @@ public class GraphqlExceptionHandler {
     public ThrowableGraphQLError handle(RuntimeException e) {
         return new ThrowableGraphQLError(e, "Internal Server Error");
     }
+
 }

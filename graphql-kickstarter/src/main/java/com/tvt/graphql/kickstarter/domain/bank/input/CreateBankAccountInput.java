@@ -9,7 +9,6 @@ public class CreateBankAccountInput {
 
     @NotBlank
     String firstName;
-
     int age;
 
 }

@@ -25,9 +25,7 @@ public class BankAccountMutation implements GraphQLMutationResolver {
 
     public BankAccount createBankAccount(@Valid CreateBankAccountInput input) {
         log.info("Creating bank account for {}", input);
-        return BankAccount.builder()
-                .id(UUID.randomUUID())
-                .currency(Currency.USD)
+        return BankAccount.builder().id(UUID.randomUUID()).currency(Currency.USD)
                 .createdAt(ZonedDateTime.now(clock))
                 .createdOn(LocalDate.now(clock))
                 .build();

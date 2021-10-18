@@ -1,5 +1,4 @@
 package com.tvt.graphql.kickstarter.config;
-
 import graphql.scalars.ExtendedScalars;
 import graphql.schema.GraphQLScalarType;
 import org.springframework.context.annotation.Bean;

@@ -1,5 +1,7 @@
 # Supported currencies
 enum Currency {
-    CMF
+    # Swiss Franc
+    CHF
+    # United States Dollar
     USD
 }

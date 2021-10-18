@@ -1,6 +1,6 @@
 type Client {
-    id: ID
+    id: ID!
     firstName: String!
-    middleNames: [String]
+    middleNames: [String!]
     lastName: String!
 }

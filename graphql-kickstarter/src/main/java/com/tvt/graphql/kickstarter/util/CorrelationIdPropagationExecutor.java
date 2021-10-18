@@ -1,10 +1,13 @@
 package com.tvt.graphql.kickstarter.util;
 
 
-import java.util.concurrent.Executor;
 import lombok.RequiredArgsConstructor;
 import org.jetbrains.annotations.NotNull;
 import org.slf4j.MDC;
+
+import java.util.concurrent.Executor;
+
+import static com.tvt.graphql.kickstarter.instrumentation.RequestLoggingInstrumentation.CORRELATION_ID;
 
 @RequiredArgsConstructor(staticName = "wrap")
 public class CorrelationIdPropagationExecutor implements Executor {

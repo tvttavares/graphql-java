@@ -1,63 +1,54 @@
 package com.tvt.graphql.kickstarter.resolver.bank.query;
 
-import com.tvt.graphql.kickstarter.BankAccountRepository;
-import com.tvt.graphql.kickstarter.connection.CursorUtil;
+import com.tvt.graphql.kickstarter.context.dataloader.DataLoaderRegistryFactory;
+import com.tvt.graphql.kickstarter.domain.bank.Asset;
 import com.tvt.graphql.kickstarter.domain.bank.BankAccount;
-import com.tvt.graphql.kickstarter.domain.bank.Currency;
-import graphql.kickstart.tools.GraphQLQueryResolver;
-import graphql.relay.*;
+import com.tvt.graphql.kickstarter.domain.bank.Client;
+import com.tvt.graphql.kickstarter.util.CorrelationIdPropagationExecutor;
+import graphql.kickstart.tools.GraphQLResolver;
 import graphql.schema.DataFetchingEnvironment;
-import graphql.schema.SelectedField;
-import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.jetbrains.annotations.Nullable;
+import org.dataloader.DataLoader;
 import org.springframework.stereotype.Component;
 
+import java.math.BigDecimal;
 import java.util.List;
 import java.util.UUID;
-import java.util.stream.Collectors;
+import java.util.concurrent.CompletableFuture;
+import java.util.concurrent.Executor;
+import java.util.concurrent.Executors;
 
 @Slf4j
 @Component
-@RequiredArgsConstructor
-public class BankAccountResolver implements GraphQLQueryResolver {
+public class BankAccountResolver implements GraphQLResolver<BankAccount> {
 
-    private final BankAccountRepository bankAccountRepository;
-    private final CursorUtil cursorUtil;
+    private static final Executor executor =
+            CorrelationIdPropagationExecutor.wrap(
+                    Executors.newFixedThreadPool(Runtime.getRuntime().availableProcessors()));
 
-    public BankAccount bankAccount(UUID id, DataFetchingEnvironment environment) {
-        log.info("Retrieving bank account id: {}", id);
+    public CompletableFuture<List<Asset>> assets(BankAccount bankAccount) {
+        return CompletableFuture.supplyAsync(
+                () -> {
+                    log.info("Getting assets for bank account id {}", bankAccount.getId());
+                    return List.of();
+                },
+                executor);
+    }
 
-        var requestedFields = environment.getSelectionSet().getFields().stream()
-                .map(SelectedField::getName).collect(Collectors.toUnmodifiableSet());
-
-        return BankAccount.builder()
-                .id(id)
-                .currency(Currency.USD)
+    public Client client(BankAccount bankAccount) {
+        log.info("Requesting client data for bank account id {}", bankAccount.getId());
+        return Client.builder()
+                .id(UUID.randomUUID())
+                .firstName("Philip")
+                .lastName("Starritt")
                 .build();
     }
 
-    public Connection<BankAccount> bankAccounts(int first, @Nullable String cursor) {
-        List<Edge<BankAccount>> edges = getBankAccounts(cursor)
-                .stream()
-                .map(bankAccount -> new DefaultEdge<>(bankAccount,
-                        cursorUtil.createCursorWith(bankAccount.getId())))
-                .limit(first)
-                .collect(Collectors.toUnmodifiableList());
-
-        var pageInfo = new DefaultPageInfo(
-                cursorUtil.getFirstCursorFrom(edges),
-                cursorUtil.getLastCursorFrom(edges),
-                cursor != null,
-                edges.size() >= first);
-
-        return new DefaultConnection<>(edges, pageInfo);
+    public CompletableFuture<BigDecimal> balance(BankAccount bankAccount,
+                                                 DataFetchingEnvironment environment) {
+        DataLoader<UUID, BigDecimal> dataLoader = environment
+                .getDataLoader(DataLoaderRegistryFactory.BALANCE_DATA_LOADER);
+        return dataLoader.load(bankAccount.getId());
     }
 
-    public List<BankAccount> getBankAccounts(String cursor) {
-        if (cursor == null) {
-            return bankAccountRepository.getBankAccounts();
-        }
-        return bankAccountRepository.getBankAccountsAfter(cursorUtil.decode(cursor));
-    }
 }
