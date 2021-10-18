@@ -1,4 +1,4 @@
-# Gets Thiago's Bank account
+# Gets Philip's Bank account
 query GET_BANK_ACCOUNT($id: ID) {
     bankAccount(id: $id) {
         currency
