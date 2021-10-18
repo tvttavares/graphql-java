@@ -1,15 +1,18 @@
 package com.tvt.graphql.kickstarter.context;
-import com.learn.graphql.context.dataloader.DataLoaderRegistryFactory;
+
+import com.tvt.graphql.kickstarter.context.dataloader.DataLoaderRegistryFactory;
 import graphql.kickstart.execution.context.GraphQLContext;
 import graphql.kickstart.servlet.context.DefaultGraphQLServletContext;
 import graphql.kickstart.servlet.context.GraphQLServletContextBuilder;
+import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.stereotype.Component;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.websocket.Session;
 import javax.websocket.server.HandshakeRequest;
-import lombok.RequiredArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
-import org.springframework.stereotype.Component;
+
 @Slf4j
 @Component
 @RequiredArgsConstructor

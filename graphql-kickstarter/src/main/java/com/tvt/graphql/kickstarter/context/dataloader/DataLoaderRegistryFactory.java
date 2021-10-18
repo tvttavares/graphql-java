@@ -1,19 +1,18 @@
 package com.tvt.graphql.kickstarter.context.dataloader;
 
-import com.learn.graphql.service.BalanceService;
-import com.learn.graphql.util.CorrelationIdPropagationExecutor;
+import com.tvt.graphql.kickstarter.service.BalanceService;
+import com.tvt.graphql.kickstarter.util.CorrelationIdPropagationExecutor;
+import lombok.RequiredArgsConstructor;
+import org.dataloader.DataLoader;
+import org.dataloader.DataLoaderRegistry;
+import org.springframework.stereotype.Component;
+
 import java.math.BigDecimal;
 import java.util.Set;
 import java.util.UUID;
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.Executor;
 import java.util.concurrent.Executors;
-
-import com.tvt.graphql.kickstarter.service.BalanceService;
-import lombok.RequiredArgsConstructor;
-import org.dataloader.DataLoader;
-import org.dataloader.DataLoaderRegistry;
-import org.springframework.stereotype.Component;
 
 @Component
 @RequiredArgsConstructor
