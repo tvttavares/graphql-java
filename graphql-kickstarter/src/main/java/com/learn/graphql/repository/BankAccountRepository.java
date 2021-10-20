@@ -1,4 +1,4 @@
-package com.learn.graphql;
+package com.learn.graphql.repository;
 
 import static java.util.UUID.fromString;
 
